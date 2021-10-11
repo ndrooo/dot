@@ -7,6 +7,9 @@ super + {_,shift + }{h,j,k,l}
 alt + {_,shift + } Tab
 	bspc node -f {next,prev}.leaf.window.local
 
+super + r
+	bspc node @parent -R 90
+
 super + {f, s}
 	bspc node -t {'~fullscreen', '~floating'}
 
