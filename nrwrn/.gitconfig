@@ -5,3 +5,5 @@
 	rebase = true
 
 # vim: set filetype=gitconfig :
+[init]
+	defaultBranch = main
