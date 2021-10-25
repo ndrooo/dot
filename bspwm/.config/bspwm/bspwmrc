@@ -29,6 +29,7 @@ configure_kiwi() {
 }
 
 configure_van() {
+    xrandr --output DP-2 --pos 0x0 --rotate normal --output DP-0 --pos 2600x0 --rotate right --output DP-6 --pos 4200x0 --rotate left
     if ! pgrep -x polybar > /dev/null; then
         polybar -c ~/.config/polybar/van.ini left &
         polybar -c ~/.config/polybar/van.ini middle &
