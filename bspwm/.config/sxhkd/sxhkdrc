@@ -4,6 +4,9 @@ super + c
 super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east} --follow
 
+super + r
+	bspc node @parent -R 90
+
 alt + {_,shift + } Tab
 	bspc node -f {next,prev}.leaf.window.local
 
