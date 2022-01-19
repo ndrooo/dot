@@ -1,5 +1,6 @@
 path+=$HOME/bin
 path+=$HOME/.local/bin
+path+=$HOME/.cargo/bin
 export PATH
 
 source <(antibody init)
