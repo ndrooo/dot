@@ -3,7 +3,7 @@ configuration {
 	show-icons: true;
 	icon-theme: "Qogir";
 	cycle: true;
-	theme: "theme";
 	terminal: "alacritty";
 	m: "-1";
 }
+@theme "theme"
