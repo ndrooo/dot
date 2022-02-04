@@ -1,10 +1,8 @@
-configuration {
+* {
   font: "SpaceMono Nerd Font Mono 20";
   hide-scrollbar: true;
   columns: 2;
-}
 
-* {
   /* colors */
   background: #121212;
   foreground: #F3E2EC;
