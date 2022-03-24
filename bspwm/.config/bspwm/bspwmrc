@@ -97,14 +97,30 @@ bspc rule -a Zathura state=tiled
 bspc subscribe desktop_layout node_add node_remove | while read -r Event
 do
   Desktop=$(echo "$Event" | awk '{print $3}')
-  State=$(bspc query -T -d $desktop | grep -o '"layout":"\w*",' | cut -d \" -f 4)
-  if [ "$State" = "monocle" ]; then 
+  State=$(bspc query -T -d $Desktop | grep -o '"layout":"\w*",' | cut -d \" -f 4)
+  if [ "$State" = "monocle" ]; then
     bspc query -N -d $Desktop | while read -r Node
     do
       xprop -id $Node -f _PICOM_ROUNDED 32c -set _PICOM_ROUNDED 1
     done
   else
     bspc query -N -d $Desktop | while read -r Node
+    do
+      xprop -id $Node -remove _PICOM_ROUNDED
+    done
+  fi
+done &
+bspc subscribe node_transfer | while read -r Event
+do
+  NewDesktop=$(echo "$Event" | awk '{print $6}')
+  State=$(bspc query -T -d $Desktop | grep -o '"layout":"\w*",' | cut -d \" -f 4)
+  if [ "$State" = "monocle" ]; then
+    bspc query -N -d $NewDesktop | while read -r Node
+    do
+      xprop -id $Node -f _PICOM_ROUNDED 32c -set _PICOM_ROUNDED 1
+    done
+  else
+    bspc query -N -d $NewDesktop | while read -r Node
     do
       xprop -id $Node -remove _PICOM_ROUNDED
     done
