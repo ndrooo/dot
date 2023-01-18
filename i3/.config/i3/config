@@ -1,0 +1,74 @@
+set $mod Mod4
+set $alt Mod1
+
+set $bg #121212
+set $fg #f3e2ec
+set $second #444444
+set $first #ca9ee9
+set $urgent #ca9ee9
+
+set $lmon DP-2
+set $mmon DP-0
+set $rmon DP-6
+
+# Control the system
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exit
+bindsym $mod+Shift+s exec systemctl suspend
+
+# Move focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+focus_wrapping no
+
+# (this probably doesn't work the way I want)
+bindsym $alt+Tab focus next
+bindsym $alt+Shift+Tab focus next
+
+bindsym $mod+BackSpace focus mode_toggle
+
+# ...but keep the mouse out of it
+focus_follows_mouse no
+mouse_warping none
+
+# Move windows
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+bindsym $mod+f fullscreen toggle
+bindsym $mod+r layout toggle split
+bindsym $mod+e layout stacking
+bindsym $mod+Shift+BackSpace floating toggle
+
+# ...with the mouse
+floating_modifier $mod
+
+# Kill windows
+bindsym $mod+q kill
+bindsym $mod+Shift+q exec xkill -id `xprop -root _NET_ACTIVE_WINDOW | cut -d\# -f2`
+
+# Launch programs
+bindsym $mod+d exec rofi -show drun
+bindsym $mod+Shift+d exec rofi -show run
+bindsym $mod+s exec rofi -show ssh
+
+bindsym $mod+Return exec kitty
+
+# configure window decoration
+default_border pixel 4
+default_floating_border normal 4
+smart_borders on
+
+# class                 border  backgr. text    indicator child_border
+client.focused          $first  $bg     $fg     $first    $first 
+client.focused_inactive $second $bg     $fg     $second   $second
+client.unfocused        $bg     $bg     $fg     $bg       $bg    
+client.urgent           $urgent $bg     $urgent $urgent   $urgent
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       $bg
